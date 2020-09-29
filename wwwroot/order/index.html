@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="js/index.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("../fragment/header.html");
+            $("#footer").load("../fragment/footer.html");
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#datapicker").datepicker("setDate", new Date());
+        });
+    </script>
+    <script>
+        $(function () {
+            getStations();
+        });
+    </script>
+    <script>
+        function getStations() {
+            $.get("station/getStation", function (station) {
+                formaterStation(station);
+            });
+        }
+    </script>
+    <script>
+        function formaterStation(stations) {
+            let ut = "<table class='table table-striped'>" +
+                "<tr>" +
+                "<th>Fornavn</th><th>Etternavn</th><th>Adresse</th><th>Postnr</th><th>Poststed</th><th></th><th></th>" +
+                "</tr>";
+            for (let station of Station) {
+                ut += "<tr>" +
+                    "<td>" + station.stationId + "</td>" +
+                    "<td>" + station.stationName + "</td>" +                 
+                    "<td> <a class='btn btn-primary' href='endre.html?id=" + kunde.id + "'>Endre</a></td>" +
+                    "<td> <button class='btn btn-danger' onclick='slettKunde(" + kunde.id + ")'>Slett</button></td>" +
+                    "</tr>";
+            }
+            ut += "</table>";
+            $("#kundene").html(ut);
+        }
+    </script>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="jumbotron">
+        <h1></h1>
+        <p class="lead">
+            <div>
+                <section>
+                    <div class="well bs-component">
+                        <br />
+                        <h2>Where Are You Going From</h2>
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-push-0">
+                                <div class="form-group">
+                                    <div>
+                                        <select class="form-control" id="selectedDeparture">
+                                            <option selected="selected">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Where Are You Going To</h2>
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-push-0">
+                                <div class="form-group">
+                                    <select class="form-control" id="selectedAarrival">
+                                        <option selected="selected">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Today? Or in specific date?</h2>
+                        <div class="row">
+                            <div class="col-xs-4 col-xs-push-0">
+                                <div class="form-group">
+                                    <input type="date" id="datapicker" name="selectedDate" value="2020-01-01" min="2020-01-01" max="2021-01-01">                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Go" class="btn btn-success" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Number Of Adults</label>
+                            <input type="number" id="numberOfAdults" />
+                        </div>
+                        <div class="form-group">
+                            <label>Number Of Students</label>
+                            <input type="number" id="numberOfStudents" />
+                        </div>
+                        <div class="form-group">
+                            <label>Number Of Kids</label>
+                            <input type="number" id="numberOfKids" />
+                        </div>
+                        <div class="form-group">
+                            <label>Number Of Seniors</label>
+                            <input type="number" id="numberOfSeniors" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h2>Trips Board</h2>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick=""></button><br /><br />
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Time
+                                    </th>
+                                    <th>
+                                        Departure
+                                    </th>
+                                    <th>
+                                        Arrival
+                                    </th>
+                                    <th>
+                                        Adult Price
+                                    </th>
+                                    <th>
+                                        Student Price
+                                    </th>
+                                    <th>
+                                        Child Price
+                                    </th>
+                                    <th>
+                                        Senior Price
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </p>       
+    </div>
+</body>
+</html>
