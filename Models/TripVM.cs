@@ -43,7 +43,7 @@ namespace ITPE3200_1_20H_nor_way.Models
         [Display(Name = "StudentPrice")]
         [Required(ErrorMessage = "Price må oppgis")]
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
-        public float StudentPrice { get; set; }
+        public float studentPrice { get; set; }
 
         [Display(Name = "ChildPrice")]
         [Required(ErrorMessage = "Price må oppgis")]

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ITPE3200_1_20H_nor_way.DAL;
 using ITPE3200_1_20H_nor_way.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ITPE3200_1_20H_nor_way.Controllers
 {
@@ -19,6 +20,14 @@ namespace ITPE3200_1_20H_nor_way.Controllers
         public IList<Station> getStation()
         {
             return _db.GetAllStations();
+        }
+        public static List<SelectListItem> PartsActive()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem { Text = "Oslo", Value = "Y" });
+            list.Add(new SelectListItem { Text = "Sta", Value = "A" });
+            list.Add(new SelectListItem { Text = "Berf", Value = "N" });
+            return list;
         }
     }
 }

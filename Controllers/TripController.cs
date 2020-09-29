@@ -21,5 +21,26 @@ namespace ITPE3200_1_20H_nor_way.Controllers
         {
             return await _db.settInn(tripVM);            
         }
+        public async Task<List<TripVM>> GetAll()
+        {
+            return await _db.getAll();
+        }
+        public async Task<bool> RemoveBiId(int id)
+        {
+            return await _db.slettTrip(id);
+        }
+        private IEnumerable<string> GetAllxx()
+        {
+            return new List<string>
+            {
+                "ACT",
+                "New South Wales",
+                "Northern Territories",
+                "Queensland",
+                "South Australia",
+                "Victoria",
+                "Western Australia",
+            };
+        }
     }
 }

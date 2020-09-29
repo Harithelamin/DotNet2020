@@ -5,7 +5,8 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <script src="js/index.js"></script>
+    <!--script src="js/index.js"></!--script>
+    <!--script-- src="js/index.js"></!--script-->
     <script>
         $(function () {
             $("#header").load("../fragment/header.html");
@@ -23,29 +24,29 @@
         });
     </script>
     <script>
-        function getStations() {
-            $.get("station/getStation", function (station) {
-                formaterStation(station);
-            });
-        }
+        $(document).ready(function () {
+
+            var list1 = document.getElementById('firstList');
+
+            list1.options[0] = new Option('--Select--', '');
+            list1.options[1] = new Option('Snacks', 'Snacks');
+            list1.options[2] = new Option('Drinks', 'Drinks');
+        });
     </script>
     <script>
-        function formaterStation(stations) {
-            let ut = "<table class='table table-striped'>" +
-                "<tr>" +
-                "<th>Fornavn</th><th>Etternavn</th><th>Adresse</th><th>Postnr</th><th>Poststed</th><th></th><th></th>" +
-                "</tr>";
-            for (let station of Station) {
-                ut += "<tr>" +
-                    "<td>" + station.stationId + "</td>" +
-                    "<td>" + station.stationName + "</td>" +                 
-                    "<td> <a class='btn btn-primary' href='endre.html?id=" + kunde.id + "'>Endre</a></td>" +
-                    "<td> <button class='btn btn-danger' onclick='slettKunde(" + kunde.id + ")'>Slett</button></td>" +
-                    "</tr>";
+        function getStations() {
+            var self = this;
+            self.stationsList = ko.observableArray([]);
+            self.getCities = function () {
+                $.ajax({
+                    url: "/GetAllStations",
+                    data: { id: $(obj).val() },
+                    contentType: "application/json",
+                    success: self.cities
+                });
             }
-            ut += "</table>";
-            $("#kundene").html(ut);
         }
+        ko.applyBindings(new getStationsList());
     </script>
 </head>
 <body>
@@ -62,7 +63,7 @@
                             <div class="col-xs-4 col-xs-push-0">
                                 <div class="form-group">
                                     <div>
-                                        <select class="form-control" id="selectedDeparture">
+                                        <select class="form-control" id="stationsList" name="selectedDeparture">
                                             <option selected="selected">Select</option>
                                         </select>
                                     </div>

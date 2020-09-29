@@ -5,7 +5,7 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <script src="js/index.js"></script>
+    <!--script-- src="js/index.js"></!--script-->
     <script>
         $(function () {
             $("#header").load("../fragment/header.html");
@@ -13,7 +13,66 @@
         });
     </script>
     <script>
+        $(function () {
+            getAllTrips();
+        });
+    </script>
+    <script>
+        function getAllTrips() {
+            $.get("GetAll", function (trips) {
+                formaterTrips(trips);
+            });
+        }
+    </script>
+    <script>
+        function removeTrip(id) {
+            const url = "RemoveBiId?id=" + id;
+            $.get(url, function (OK) {
+                if (OK) {
+                    window.location.href = 'index.html';
+                }
+                else {
+                    $("#feil").html("Feil i db - prøv igjen senere");
+                }
 
+            });
+        }
+    </script>
+    <script>
+        function formaterTrips(trips) {
+            let ut = "<table class='table table-striped'>" +
+                "<tr>" +
+                "<th>Id</th>" +
+                "<th>TripDate</th>" +
+                "<th>TripTime</th>" +
+                "<th>Departure</th>" +
+                "<th>Arrival</th>" +
+                "<th>Price for Adult</th>" +
+                "<th>Student</th>" +
+                "<th>Child</th>" +
+                "<th>Senior</th>" +
+                "<th></th>" +
+                "<th></th>" +
+                "<th></th><th></th>" +
+                "</tr>";
+            for (let trip of trips) {
+                ut += "<tr>" +
+                    "<td>" + trip.id + "</td>" +
+                    "<td>" + trip.StringTripDate + "</td>" +
+                    "<td>" + trip.StringTripTime + "</td>" +
+                    "<td>" + trip.departure + "</td>" +
+                    "<td>" + trip.arrival + "</td>" +
+                    "<td>" + trip.adultPrice + "</td>" +
+                    "<td>" + trip.StudentPrice + "</td>" +
+                    "<td>" + trip.childPrice + "</td>" +
+                    "<td>" + trip.seniorPrice + "</td>" +
+                    "<td> <a class='btn btn-primary' href='endre.html?id=" + trip.id + "'>Change</a></td>" +
+                    "<td> <button class='btn btn-danger' onclick='removeTrip(" + trip.id + ")'>Remove</button></td>" +
+                    "</tr>";
+            }
+            ut += "</table>";
+            $("#tps").html(ut);
+        }
     </script>
 
 </head>
@@ -21,7 +80,7 @@
     <div id="header"></div>
     <div class="container">
         <h1>Trip Controll:</h1>
-        <div id="trips"></div>
+        <div id="tps"></div>
         <a href="../trip/lagre.html" class="btn btn-primary">New Trip</a>
     </div>
 </body>

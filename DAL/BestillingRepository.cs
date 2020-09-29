@@ -144,7 +144,7 @@ namespace ITPE3200_1_20H_nor_way.DAL
                                     departure = t.Departure,
                                     arrival = t.Arrival,
                                     adultPrice = t.AdultPrice,
-                                    StudentPrice = t.StudentPrice,
+                                    studentPrice = t.StudentPrice,
                                     childPrice = t.ChildPrice,
                                     seniorPrice = t.SeniorPrice
 

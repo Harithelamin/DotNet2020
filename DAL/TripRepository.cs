@@ -30,7 +30,7 @@ namespace ITPE3200_1_20H_nor_way.DAL
                     departure = t.Departure,
                     arrival = t.Arrival,
                     adultPrice = t.AdultPrice,
-                    StudentPrice = t.StudentPrice,
+                    studentPrice = t.StudentPrice,
                     childPrice = t.ChildPrice,
                     seniorPrice = t.SeniorPrice,
                 }).ToListAsync();
@@ -59,7 +59,7 @@ namespace ITPE3200_1_20H_nor_way.DAL
                     departure = dbTrip.DepartureStation.StationName,
                     arrival = dbTrip.ArrivalStation.StationName,
                     adultPrice = dbTrip.AdultPrice,
-                    StudentPrice = dbTrip.StudentPrice,
+                    studentPrice = dbTrip.StudentPrice,
                     childPrice = dbTrip.ChildPrice,
                     seniorPrice = dbTrip.SeniorPrice
 
@@ -75,7 +75,7 @@ namespace ITPE3200_1_20H_nor_way.DAL
                 TripDate = innTrip.tripDate,
                 TripTime = innTrip.tripTime,
                 AdultPrice = innTrip.adultPrice,
-                StudentPrice = innTrip.StudentPrice,
+                StudentPrice = innTrip.studentPrice,
                 ChildPrice = innTrip.childPrice,
                 SeniorPrice = innTrip.seniorPrice,
                 Departure = innTrip.departure,
@@ -152,7 +152,7 @@ namespace ITPE3200_1_20H_nor_way.DAL
             endreTrip.Departure = innTrip.departure;
             endreTrip.Arrival = innTrip.arrival;
             endreTrip.AdultPrice = innTrip.adultPrice;
-            endreTrip.StudentPrice = innTrip.StudentPrice;
+            endreTrip.StudentPrice = innTrip.studentPrice;
             endreTrip.ChildPrice = innTrip.childPrice;
             endreTrip.SeniorPrice = innTrip.seniorPrice;
 
